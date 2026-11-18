@@ -11,6 +11,7 @@
     "cutout": "node scripts/cutout.mjs"
   },
   "dependencies": {
+    "@google/genai": "^3.6.0",
     "@react-three/drei": "^10.0.0",
     "@react-three/fiber": "^9.0.0",
     "gsap": "^3.12.7",
