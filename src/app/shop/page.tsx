@@ -67,7 +67,13 @@ export default function ShopPage() {
   }, [active3dProduct.id, filteredProducts]);
 
   return (
-    <div className="flex min-h-[100svh] flex-col justify-between bg-background selection:bg-secondary selection:text-text">
+    <div
+      className="flex min-h-[100svh] flex-col justify-between selection:bg-[#E9D5FF] selection:text-[#24112E]"
+      style={{
+        background:
+          "radial-gradient(circle at 65% 20%, #FAF2FF 0%, #EFE1FA 45%, #E3D1F5 75%, #D4BAEC 100%)",
+      }}
+    >
       <Header />
 
       <main

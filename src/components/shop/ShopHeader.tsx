@@ -25,12 +25,20 @@ export function ShopHeader({
   return (
     <div className="w-full space-y-6">
       {/* Top Banner & Mode Toggle */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-[clamp(1.75rem,3vw,2.4rem)] font-semibold text-text leading-[1.32]">
+          <div className="flex items-center gap-2.5 mb-3">
+            <span className="editorial-tag text-[10px] font-bold text-[#6D28D9] bg-white/75 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/90 shadow-sm">
+              03 // DISCREET BOUTIQUE
+            </span>
+            <span className="text-xs text-emerald-700 font-semibold bg-emerald-50/85 px-2.5 py-0.5 rounded-full border border-emerald-200">
+              📦 100% กล่องพัสดุนิรนาม
+            </span>
+          </div>
+          <h1 className="font-thai-serif text-[clamp(2rem,3.6vw,3.1rem)] font-semibold text-[#24112E] leading-[1.22]">
             {COPY_TH.shop.title}
           </h1>
-          <p className="mt-1.5 max-w-[58ch] text-[0.95rem] text-[#555261] leading-[1.65]">
+          <p className="mt-2 max-w-[58ch] text-sm sm:text-base text-[#5C3275] leading-[1.7]">
             {COPY_TH.shop.subtitle}
           </p>
         </div>
@@ -39,7 +47,7 @@ export function ShopHeader({
         <div
           role="radiogroup"
           aria-label={COPY_TH.shop.modeSwitchAria}
-          className="inline-flex self-start rounded-full border border-border bg-surface p-1 shadow-xs sm:self-auto"
+          className="inline-flex self-start rounded-full border border-white/90 bg-white/75 backdrop-blur-xl p-1.5 shadow-sm sm:self-auto"
         >
           <button
             type="button"

@@ -21,6 +21,8 @@ interface UiState {
   shopMode: ShopMode;
   /** Flag set if WebGL is unavailable, errors, or loses context */
   webglFallback: boolean;
+  /** Global Lumi Thai voice narration toggle */
+  voiceEnabled: boolean;
 
   setForceReducedMotion: (enabled: boolean) => void;
   toggleForceReducedMotion: () => void;
@@ -32,6 +34,7 @@ interface UiState {
   setMobileMenuOpen: (open: boolean) => void;
   setShopMode: (mode: ShopMode) => void;
   setWebglFallback: (fallback: boolean) => void;
+  toggleVoice: () => void;
 }
 
 export const useUiStore = create<UiState>()(
@@ -45,6 +48,7 @@ export const useUiStore = create<UiState>()(
       mobileMenuOpen: false,
       shopMode: "grid",
       webglFallback: false,
+      voiceEnabled: true,
 
       setForceReducedMotion: (enabled) =>
         set({
@@ -84,6 +88,13 @@ export const useUiStore = create<UiState>()(
       setMobileMenuOpen: (open) => set({ mobileMenuOpen: open }),
       setShopMode: (mode) => set({ shopMode: mode }),
       setWebglFallback: (fallback) => set({ webglFallback: fallback }),
+      toggleVoice: () => {
+        const next = !get().voiceEnabled;
+        set({ voiceEnabled: next });
+        if (!next && typeof window !== "undefined" && "speechSynthesis" in window) {
+          window.speechSynthesis.cancel();
+        }
+      },
     }),
     {
       name: "bloomcare-ui-v1",

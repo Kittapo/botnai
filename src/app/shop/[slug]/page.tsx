@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { PriceTag } from "@/components/ui/PriceTag";
 import { DemoRating } from "@/components/ui/DemoRating";
 import { Product3DViewer } from "@/components/shop/Product3DViewer";
+import { AddToCartSection } from "@/components/shop/AddToCartSection";
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
@@ -104,14 +105,17 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                     : COPY_TH.productFallbacks.infoPending}
                 </p>
               </div>
+              <div className="mt-6">
+                <AddToCartSection product={product} />
+              </div>
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/shop" variant="secondary" size="md">
-                กลับไปยังร้านค้า
+                ← กลับไปยังร้านค้า
               </Button>
               <Button href="/cart" variant="primary" size="md">
-                ดูตะกร้าสินค้า
+                ดูตะกร้าสินค้า ({product.brand})
               </Button>
             </div>
           </div>

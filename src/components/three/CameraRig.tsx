@@ -18,12 +18,12 @@ export function CameraRig({ activeProductId, reducedMotion }: CameraRigProps) {
       targetPos: new THREE.Vector3(),
       lookAtPos: new THREE.Vector3(),
       currentLookAt: new THREE.Vector3(0, 0, 0),
-      cHero: new THREE.Color("#FFFAFC"),
-      cDiscover: new THREE.Color("#F8D7E7"),
-      cBeige: new THREE.Color("#F2E4D8"),
-      cProduct: new THREE.Color("#F3DCE6"),
-      cClosing: new THREE.Color("#FFFAFC"),
-      outColor: new THREE.Color("#FFFAFC"),
+      cHero: new THREE.Color("#FAF2FF"),
+      cDiscover: new THREE.Color("#EFE1FA"),
+      cBeige: new THREE.Color("#F5ECE6"),
+      cProduct: new THREE.Color("#F3ECF8"),
+      cClosing: new THREE.Color("#FAF7F2"),
+      outColor: new THREE.Color("#FAF2FF"),
     }),
     []
   );
@@ -38,7 +38,7 @@ export function CameraRig({ activeProductId, reducedMotion }: CameraRigProps) {
       scrollState.smoothed = THREE.MathUtils.damp(
         scrollState.smoothed,
         scrollState.progress,
-        6.5,
+        8.5,
         delta
       );
     }

@@ -12,16 +12,13 @@ gsap.registerPlugin(ScrollTrigger);
 export function Scene03Philosophy() {
   const reducedMotion = useReducedMotion();
   const outerRef = useRef<HTMLElement>(null);
-  const pinStageRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
   const pillarRefs = useRef<(HTMLDivElement | null)[]>([]);
   const closingLineRef = useRef<HTMLParagraphElement>(null);
-  const shape1Ref = useRef<SVGSVGElement>(null);
-  const shape2Ref = useRef<SVGSVGElement>(null);
-  const shape3Ref = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
     const outer = outerRef.current;
-    const stage = pinStageRef.current;
+    const stage = stageRef.current;
     if (!outer || !stage) return;
 
     const pillars = pillarRefs.current.filter(
@@ -39,19 +36,17 @@ export function Scene03Philosophy() {
     }
 
     const ctx = gsap.context(() => {
-      gsap.set(pillars, { opacity: 0.14, y: 18 });
+      gsap.set(pillars, { opacity: 0.12, y: 24 });
       if (closingEl) {
-        gsap.set(closingEl, { opacity: 0, y: 14 });
+        gsap.set(closingEl, { opacity: 0, y: 16 });
       }
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: outer,
-          pin: stage,
-          start: "top top",
-          end: "+=115%",
+          start: "top 75%",
+          end: "bottom 80%",
           scrub: 0.5,
-          anticipatePin: 1,
         },
       });
 
@@ -61,10 +56,10 @@ export function Scene03Philosophy() {
           {
             opacity: 1,
             y: 0,
-            duration: 0.24,
-            ease: "power2.out",
+            duration: 0.3,
+            ease: "power3.out",
           },
-          idx * 0.25
+          idx * 0.22
         );
       });
 
@@ -74,22 +69,11 @@ export function Scene03Philosophy() {
           {
             opacity: 1,
             y: 0,
-            duration: 0.22,
-            ease: "power2.out",
+            duration: 0.25,
+            ease: "power3.out",
           },
-          0.76
+          0.75
         );
-      }
-
-      // Three layered translucent organic shapes drifting at subtle speeds (<20% amplitude)
-      if (shape1Ref.current) {
-        tl.to(shape1Ref.current, { y: -36, x: 14, duration: 1, ease: "none" }, 0);
-      }
-      if (shape2Ref.current) {
-        tl.to(shape2Ref.current, { y: 28, x: -18, duration: 1, ease: "none" }, 0);
-      }
-      if (shape3Ref.current) {
-        tl.to(shape3Ref.current, { y: -22, x: -10, duration: 1, ease: "none" }, 0);
       }
     }, outer);
 
@@ -100,124 +84,92 @@ export function Scene03Philosophy() {
     <section
       id={SCENE_ANCHOR_IDS[2]}
       ref={outerRef}
-      className="relative z-10 w-full"
+      className="relative z-10 w-full overflow-hidden"
     >
       <div
-        ref={pinStageRef}
+        ref={stageRef}
         className={[
-          "relative flex w-full items-center overflow-hidden",
-          reducedMotion ? "py-20 md:py-28" : "min-h-[100svh] py-20",
+          "relative flex w-full items-center py-24 sm:py-32",
+          reducedMotion ? "min-h-auto" : "min-h-[105svh]",
         ].join(" ")}
       >
-        {/* Layered translucent organic SVG petals (3 speeds, zero stock photos) */}
+        {/* Soft Ambient Radial Caustics */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 overflow-hidden"
-        >
-          <svg
-            ref={shape1Ref}
-            viewBox="0 0 320 320"
-            className="absolute -left-16 top-[12%] h-64 w-64 opacity-45 sm:h-80 sm:w-80"
-          >
-            <ellipse
-              cx="160"
-              cy="160"
-              rx="135"
-              ry="92"
-              transform="rotate(-24 160 160)"
-              fill="#F8D7E7"
-            />
-          </svg>
-          <svg
-            ref={shape2Ref}
-            viewBox="0 0 360 360"
-            className="absolute right-[4%] top-[18%] h-72 w-72 opacity-50 sm:h-96 sm:w-96"
-          >
-            <ellipse
-              cx="180"
-              cy="180"
-              rx="145"
-              ry="102"
-              transform="rotate(32 180 180)"
-              fill="#FFF3E6"
-            />
-          </svg>
-          <svg
-            ref={shape3Ref}
-            viewBox="0 0 280 280"
-            className="absolute bottom-[8%] left-[38%] h-56 w-56 opacity-40 sm:h-72 sm:w-72"
-          >
-            <ellipse
-              cx="140"
-              cy="140"
-              rx="118"
-              ry="84"
-              transform="rotate(-12 140 140)"
-              fill="#F2E4D8"
-            />
-          </svg>
-        </div>
+          className="pointer-events-none absolute right-[-10%] top-[20%] h-[600px] w-[600px] rounded-full blur-[100px] opacity-45"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(254, 215, 170, 0.4) 0%, rgba(233, 213, 255, 0.3) 50%, transparent 75%)",
+          }}
+        />
 
-        {/* Open Asymmetric Editorial Layout (not a card grid, Rule A3 & B5) */}
-        <div className="relative mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-8 lg:gap-12">
-            {/* Editorial Section Header */}
-            <div className="md:col-span-4 lg:col-span-4">
-              <p className="text-[0.875rem] font-medium tracking-[0.04em] text-primary-strong leading-[1.6]">
+        {/* Editorial Luxury Magazine Spread */}
+        <div className="relative mx-auto w-full max-w-[1440px] px-6 sm:px-10 lg:px-16">
+          {/* Section Header */}
+          <div className="max-w-2xl mb-12 sm:mb-16">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="editorial-tag text-[11px] font-bold text-[#6D28D9] bg-white/70 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/90 shadow-sm">
+                03 // CORE PHILOSOPHY
+              </span>
+              <span className="text-xs text-[#664A73] font-medium tracking-wider uppercase">
                 {COPY_TH.scene03.eyebrow}
-              </p>
-              <div
-                aria-hidden="true"
-                className="mt-4 h-[1px] w-16 bg-primary-strong/35"
-              />
+              </span>
             </div>
 
-            {/* Three Staggered Editorial Pillars */}
-            <div className="space-y-7 md:col-span-8 lg:col-span-7 lg:col-start-6 lg:space-y-8">
-              {COPY_TH.scene03.pillars.map((pillar, idx) => {
-                const indentClass =
-                  idx === 1
-                    ? "lg:pl-10"
-                    : idx === 2
-                      ? "lg:pl-20"
-                      : "";
+            <h2 className="font-thai-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#24112E] leading-tight">
+              เสาหลักแห่งความไว้วางใจ
+              <br />
+              <span className="font-normal text-[#4D2862]">
+                เพื่อสุขภาวะที่งดงามในทุกมิติ
+              </span>
+            </h2>
+          </div>
 
-                return (
-                  <div
-                    key={pillar.id}
-                    ref={(el) => {
-                      pillarRefs.current[idx] = el;
-                    }}
-                    className={`border-t border-border/90 pt-5 ${indentClass}`}
-                    style={{
-                      willChange: reducedMotion ? "auto" : "transform, opacity",
-                    }}
-                  >
-                    <div className="flex items-baseline gap-4">
-                      <span className="font-sans text-[0.85rem] font-medium text-primary-strong">
-                        {pillar.number}
-                      </span>
-                      <h3 className="text-[clamp(1.35rem,2.2vw,1.85rem)] font-semibold text-text leading-[1.38]">
-                        {pillar.title}
-                      </h3>
-                    </div>
-                    <p className="mt-2 max-w-[48ch] pl-9 text-[1rem] text-[#413E4B] leading-[1.72]">
-                      {pillar.body}
-                    </p>
-                  </div>
-                );
-              })}
-
-              <p
-                ref={closingLineRef}
-                className="pt-4 text-[clamp(1.2rem,2vw,1.6rem)] font-semibold text-primary-strong leading-[1.45]"
+          {/* 3 Staggered Editorial Pillar Columns */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {COPY_TH.scene03.pillars.map((pillar, idx) => (
+              <div
+                key={pillar.id}
+                ref={(el) => {
+                  pillarRefs.current[idx] = el;
+                }}
+                className="group relative p-7 sm:p-9 rounded-3xl transition-all duration-300 hover:-translate-y-1.5"
                 style={{
-                  willChange: reducedMotion ? "auto" : "transform, opacity",
+                  background: "rgba(255, 255, 255, 0.62)",
+                  backdropFilter: "blur(24px)",
+                  WebkitBackdropFilter: "blur(24px)",
+                  border: "1.5px solid rgba(255, 255, 255, 0.88)",
+                  boxShadow:
+                    "0 12px 35px rgba(90, 30, 130, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.95)",
                 }}
               >
-                {COPY_TH.scene03.closingLine}
-              </p>
-            </div>
+                {/* Large Subtle Watermark Cormorant Garamond Italic Numeral */}
+                <div className="font-display-luxury italic text-6xl sm:text-7xl font-light text-[#6D28D9]/25 group-hover:text-[#6D28D9]/50 transition-colors mb-3 leading-none">
+                  {pillar.number}
+                </div>
+
+                <h3 className="font-thai-serif text-xl sm:text-2xl font-semibold text-[#24112E] leading-snug mb-3">
+                  {pillar.title}
+                </h3>
+
+                <p className="text-sm sm:text-base text-[#4D2862] leading-relaxed">
+                  {pillar.body}
+                </p>
+
+                {/* Decorative Bottom Bar */}
+                <div className="mt-6 h-[2px] w-12 bg-gradient-to-r from-[#8B5CF6] to-transparent rounded-full group-hover:w-20 transition-all duration-300" />
+              </div>
+            ))}
+          </div>
+
+          {/* Closing Statement */}
+          <div className="mt-14 max-w-2xl">
+            <p
+              ref={closingLineRef}
+              className="font-editorial-serif text-xl sm:text-2xl font-medium text-[#24112E] italic leading-relaxed"
+            >
+              &ldquo;{COPY_TH.scene03.closingLine}&rdquo;
+            </p>
           </div>
         </div>
       </div>

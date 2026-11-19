@@ -17,6 +17,7 @@ import { CssFallbackScene } from "@/components/fallback/CssFallbackScene";
 import { SceneDots } from "@/components/layout/SceneDots";
 import { Footer } from "@/components/layout/Footer";
 import { Scene01Hero } from "@/components/scenes/Scene01Hero";
+import { EditorialMarquee } from "@/components/ui/EditorialMarquee";
 import { Button } from "@/components/ui/Button";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -56,10 +57,10 @@ export default function HomePage() {
     }
 
     const lenis = new Lenis({
-      duration: 1.15,
+      lerp: 0.085,
       smoothWheel: true,
-      wheelMultiplier: 0.95,
-      touchMultiplier: 1.0,
+      wheelMultiplier: 1.05,
+      touchMultiplier: 1.1,
     });
     setActiveLenis(lenis);
 
@@ -148,23 +149,43 @@ export default function HomePage() {
       {/* Scrollable Cinematic Narrative (~460-500 svh in motion mode, stacked static in reduced motion) */}
       <main id="main-content" className="relative z-10 w-full">
         <Scene01Hero />
+        <EditorialMarquee />
         <Scene02Discover />
         <Scene03Philosophy />
         <Scene04Reveal />
 
         {/* Closing Calm Tonal Settle (p 0.85 - 1.0) */}
-        <section className="relative z-10 flex min-h-[56svh] w-full items-center py-20 lg:py-28">
-          <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12">
-            <div className="max-w-[680px] rounded-3xl bg-background/78 p-6 backdrop-blur-md sm:p-10">
-              <p className="text-[0.875rem] font-medium tracking-[0.04em] text-primary-strong leading-[1.6]">
-                {COPY_TH.closing.eyebrow}
-              </p>
-              <h2 className="mt-3 text-[clamp(1.55rem,2.8vw,2.35rem)] font-semibold text-text leading-[1.38]">
+        <section className="relative z-10 flex min-h-[58svh] w-full items-center py-24 lg:py-32">
+          <div className="mx-auto w-full max-w-[1440px] px-6 sm:px-10 lg:px-16">
+            <div
+              className="max-w-[720px] rounded-3xl p-8 sm:p-12 shadow-[0_25px_60px_rgba(70,20,110,0.15)]"
+              style={{
+                background: "rgba(255, 255, 255, 0.72)",
+                backdropFilter: "blur(28px)",
+                WebkitBackdropFilter: "blur(28px)",
+                border: "1.5px solid rgba(255, 255, 255, 0.95)",
+              }}
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <span className="editorial-tag text-[11px] font-bold text-[#6D28D9] bg-white/70 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/90 shadow-sm">
+                  05 // DIGITAL SANCTUARY
+                </span>
+                <span className="text-xs text-[#664A73] font-medium tracking-wider uppercase">
+                  {COPY_TH.closing.eyebrow}
+                </span>
+              </div>
+
+              <h2 className="font-editorial-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#24112E] leading-tight">
                 {COPY_TH.closing.headline}
               </h2>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+
+              <p className="mt-4 text-sm sm:text-base text-[#4D2862] leading-relaxed max-w-xl">
+                เริ่มต้นสำรวจพื้นที่แห่งสุขภาวะที่ดี หรือพูดคุยปรึกษาเรื่องที่คุณกังวลใจกับน้อง Lumi AI ได้ทันทีอย่างปลอดภัย
+              </p>
+
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
                 <Button href="/ai" variant="primary" size="lg" fullWidthMobile>
-                  {COPY_TH.closing.primaryCta}
+                  ✦ {COPY_TH.closing.primaryCta}
                 </Button>
                 <Button
                   href="/shop"

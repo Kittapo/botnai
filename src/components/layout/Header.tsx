@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCartStore } from "@/store/cart";
+import { useUiStore } from "@/store/ui";
 
 const subscribeNoop = () => () => {};
 const getClientSnapshot = () => true;
@@ -12,32 +13,24 @@ const getServerSnapshot = () => false;
 export function Header() {
   const pathname = usePathname();
   const items = useCartStore((s) => s.items);
+  const voiceOn = useUiStore((s) => s.voiceEnabled);
+  const toggleVoice = useUiStore((s) => s.toggleVoice);
   const isHydrated = useSyncExternalStore(
     subscribeNoop,
     getClientSnapshot,
     getServerSnapshot
   );
 
-  const [voiceOn, setVoiceOn] = useState(true);
-
   const totalCount = isHydrated
     ? items.reduce((sum, item) => sum + item.quantity, 0)
     : 0;
 
-  const toggleVoice = () => {
-    const next = !voiceOn;
-    setVoiceOn(next);
-    if (!next && typeof window !== "undefined" && "speechSynthesis" in window) {
-      window.speechSynthesis.cancel();
-    }
-  };
-
   return (
     <header className="fixed top-0 inset-x-0 z-50 px-6 sm:px-12 py-5 transition-all duration-300">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Brand Logo (Ref Matching: Clean Elegant Serif 'BloomCare') */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <span className="font-editorial-serif text-2xl sm:text-3xl font-semibold tracking-tight text-white drop-shadow-[0_2px_10px_rgba(80,30,120,0.25)]">
+        {/* Brand Logo (Awwwards High-Fashion Luxury Display Serif) */}
+        <Link href="/" className="flex items-center gap-2 group" data-cursor-label="HOME">
+          <span className="font-display-luxury text-3xl sm:text-4xl font-semibold tracking-[-0.02em] text-white drop-shadow-[0_2px_12px_rgba(80,30,120,0.28)]">
             BloomCare
           </span>
         </Link>
@@ -61,19 +54,30 @@ export function Header() {
             href="/"
             className={`px-4 py-2 rounded-full glass-prismatic-pill transition-all ${
               pathname === "/"
-                ? "bg-white/70 text-[#2D143D] font-bold shadow-sm"
-                : "text-[#4A205E] hover:text-[#2D143D]"
+                ? "bg-white/80 text-[#24112E] font-bold shadow-sm"
+                : "text-[#5C3275] hover:text-[#24112E]"
             }`}
           >
-            Cover
+            Sanctuary
+          </Link>
+
+          <Link
+            href="/ai"
+            className={`px-4 py-2 rounded-full glass-prismatic-pill transition-all ${
+              pathname.startsWith("/ai")
+                ? "bg-white/80 text-[#24112E] font-bold shadow-sm"
+                : "text-[#5C3275] hover:text-[#24112E]"
+            }`}
+          >
+            <span>✦ Lumi AI</span>
           </Link>
 
           <Link
             href="/shop"
             className={`px-4 py-2 rounded-full glass-prismatic-pill transition-all ${
               pathname.startsWith("/shop")
-                ? "bg-white/70 text-[#2D143D] font-bold shadow-sm"
-                : "text-[#4A205E] hover:text-[#2D143D]"
+                ? "bg-white/80 text-[#24112E] font-bold shadow-sm"
+                : "text-[#5C3275] hover:text-[#24112E]"
             }`}
           >
             Store [ร้านค้า]

@@ -1,19 +1,39 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #A855F7;
-  --primary-strong: #7E22CE;
+  /* Core Brand Tokens */
+  --primary: #8B5CF6;
+  --primary-strong: #6D28D9;
   --secondary: #C084FC;
   --background: #D8C7EE;
   --surface: #F3E8FF;
-  --text: #2D143D;
-  --text-muted: #6B4E7A;
-  --border: rgba(255, 255, 255, 0.45);
+  --text: #24112E;
+  --text-muted: #664A73;
+  --border: rgba(255, 255, 255, 0.55);
+
+  /* A Living Digital Sanctuary — The Sacred Palette */
+  --canvas-ivory: #FAF7F2;
+  --canvas-fog: #F3ECF8;
+  --ink-deep: #24112E;
+  --ink-forest: #1A2C24;
+  --ink-muted: #664A73;
+  --lavender-soft: #E8D5F5;
+  --amethyst-royal: #8B5CF6;
+  --sage-emerald: #059669;
+  --peach-sunlit: #FED7AA;
+  --cream-pure: #FFFDF9;
   --accent-cream: #FFFDF9;
   --accent-beige: #F5EEF8;
+
+  /* Typography Stacks */
   --font-jakarta: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
   --font-anuphan: 'Anuphan', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
+  --font-serif: 'Playfair Display', 'Noto Serif Thai', Georgia, Cambria, serif;
+  --font-display-luxury: 'Cormorant Garamond', 'Noto Serif Thai', Georgia, serif;
+  --font-thai-serif: 'Noto Serif Thai', 'Cormorant Garamond', Georgia, serif;
+
+  /* Signature Motion Easing */
+  --ease-awwwards: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
@@ -25,6 +45,16 @@
   --color-text: var(--text);
   --color-muted: var(--text-muted);
   --color-border: var(--border);
+  --color-canvas-ivory: var(--canvas-ivory);
+  --color-canvas-fog: var(--canvas-fog);
+  --color-ink-deep: var(--ink-deep);
+  --color-ink-forest: var(--ink-forest);
+  --color-ink-muted: var(--ink-muted);
+  --color-lavender-soft: var(--lavender-soft);
+  --color-amethyst-royal: var(--amethyst-royal);
+  --color-sage-emerald: var(--sage-emerald);
+  --color-peach-sunlit: var(--peach-sunlit);
+  --color-cream-pure: var(--cream-pure);
   --color-accent-cream: var(--accent-cream);
   --color-accent-beige: var(--accent-beige);
   --font-sans: var(--font-jakarta), var(--font-anuphan), ui-sans-serif, system-ui, sans-serif;
@@ -32,15 +62,15 @@
 }
 
 html {
-  background-color: #D8C7EE;
-  color: #2D143D;
+  background-color: var(--canvas-fog);
+  color: var(--ink-deep);
   overflow-x: clip;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background-color: #D8C7EE;
-  color: #2D143D;
+  background-color: var(--canvas-fog);
+  color: var(--ink-deep);
   font-family: var(--font-sans);
   line-height: 1.68;
   overflow-x: clip;
@@ -52,34 +82,55 @@ body {
   font-family: var(--font-serif);
 }
 
-/* Master Lavender Dream Cloudscape Background */
+.font-display-luxury {
+  font-family: var(--font-display-luxury);
+}
+
+.font-thai-serif {
+  font-family: var(--font-thai-serif);
+}
+
+/* Master Atmospheric Morning Fog & Aurora Background */
+.sanctuary-atmosphere-bg {
+  background: radial-gradient(circle at 65% 42%, #F8EFFC 0%, #EBDCF5 38%, #DCC4EE 75%, #CEB0E4 100%);
+}
+
 .lavender-cloudscape-bg {
   background: radial-gradient(circle at 65% 45%, #F0E3FC 0%, #D8C4EE 40%, #CBB5E5 75%, #BDA0DD 100%);
 }
 
-/* Prismatic Glassmorphism Styles (Matching Reference) */
+/* Tactile Optical Glass (Awwwards Standard) */
 .glass-prismatic-pill {
-  background: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.52);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1.5px solid rgba(255, 255, 255, 0.75);
-  box-shadow: 0 10px 30px rgba(120, 60, 160, 0.18), inset 0 1px 2px rgba(255, 255, 255, 0.8);
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 30px rgba(110, 40, 150, 0.16), inset 0 1.5px 2px rgba(255, 255, 255, 0.95);
+  transition: all 0.38s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .glass-prismatic-pill:hover {
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.72);
   border-color: #FFFFFF;
-  box-shadow: 0 15px 40px rgba(168, 85, 247, 0.28), 0 0 25px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 16px 45px rgba(139, 92, 246, 0.26), inset 0 2px 3px rgba(255, 255, 255, 1);
   transform: translateY(-2px) scale(1.03);
 }
 
 .glass-prismatic-modal {
-  background: rgba(248, 240, 255, 0.88);
+  background: rgba(252, 248, 255, 0.92);
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
-  border: 2px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 25px 70px rgba(80, 30, 120, 0.22), 0 0 35px rgba(192, 132, 252, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 25px 75px rgba(60, 20, 95, 0.24), 0 0 40px rgba(192, 132, 252, 0.32);
+}
+
+/* Editorial Micro-Tag Style */
+.editorial-tag {
+  font-family: var(--font-jakarta), ui-sans-serif, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 @keyframes gentleFloat {
@@ -87,12 +138,12 @@ body {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-9px) rotate(1deg);
+    transform: translateY(-8px) rotate(0.8deg);
   }
 }
 
 .animate-gentle-float {
-  animation: gentleFloat 5s ease-in-out infinite;
+  animation: gentleFloat 5.5s ease-in-out infinite;
 }
 
 @keyframes spinSlow {
@@ -105,5 +156,92 @@ body {
 }
 
 .animate-spin-slow {
-  animation: spinSlow 30s linear infinite;
+  animation: spinSlow 32s linear infinite;
+}
+
+@keyframes astrolabeSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes astrolabeSpinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-astrolabe {
+  animation: astrolabeSpin 90s linear infinite;
+}
+
+.animate-astrolabe-reverse {
+  animation: astrolabeSpinReverse 65s linear infinite;
+}
+
+@keyframes editorialRevealUp {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-editorial-reveal {
+  animation: editorialRevealUp 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-editorial-reveal-delay-1 {
+  opacity: 0;
+  animation: editorialRevealUp 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.14s forwards;
+}
+
+.animate-editorial-reveal-delay-2 {
+  opacity: 0;
+  animation: editorialRevealUp 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.28s forwards;
+}
+
+.animate-editorial-reveal-delay-3 {
+  opacity: 0;
+  animation: editorialRevealUp 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.42s forwards;
+}
+
+@keyframes editorialMarquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-editorial-marquee {
+  animation: editorialMarquee 38s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-astrolabe,
+  .animate-astrolabe-reverse,
+  .animate-gentle-float,
+  .animate-spin-slow,
+  .animate-editorial-marquee {
+    animation: none !important;
+  }
+  .animate-editorial-reveal,
+  .animate-editorial-reveal-delay-1,
+  .animate-editorial-reveal-delay-2,
+  .animate-editorial-reveal-delay-3 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
